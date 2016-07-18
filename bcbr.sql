@@ -1,0 +1,54 @@
+DROP TABLE IF EXISTS loader_redbull;
+CREATE TABLE loader_redbull (
+one INTEGER(4) NOT NULL,
+position INTEGER(4) NOT NULL,
+name VARCHAR(1024) DEFAULT '',
+team VARCHAR(1024) DEFAULT '',
+category VARCHAR(40) DEFAULT '',
+country VARCHAR(40) DEFAULT '',
+plate VARCHAR(10) DEFAULT '',
+time VARCHAR(20) DEFAULT '',
+city VARCHAR(255) DEFAULT '',
+category_position INTEGER(4) NOT NULL,
+speed DECIMAL(4,2) NOT NULL,
+team2 VARCHAR(1024) DEFAULT '',
+PRIMARY KEY (plate)
+);
+
+DROP TABLE IF EXISTS loader;
+CREATE TABLE loader (
+one INTEGER(4) NOT NULL,
+position INTEGER(4) NOT NULL,
+name VARCHAR(1024) DEFAULT '',
+team VARCHAR(1024) DEFAULT '',
+category VARCHAR(40) DEFAULT '',
+gender VARCHAR(4) DEFAULT '',
+country VARCHAR(40) DEFAULT '',
+nope VARCHAR(4) DEFAULT '',
+plate VARCHAR(10) DEFAULT '',
+time VARCHAR(20) DEFAULT '',
+city VARCHAR(255) DEFAULT '',
+category_position INTEGER(4) NOT NULL,
+speed DECIMAL(4,2) NOT NULL,
+team2 VARCHAR(1024) DEFAULT '',
+PRIMARY KEY (plate)
+);
+
+DROP TABLE IF EXISTS results;
+CREATE TABLE results (
+year INTEGER(4) NOT NULL,
+stage INTEGER(4) NOT NULL,
+stage_name VARCHAR(1024) DEFAULT '',
+position INTEGER(4) NOT NULL,
+name VARCHAR(1024) DEFAULT '',
+team VARCHAR(1024) DEFAULT '',
+category VARCHAR(40) DEFAULT '',
+country VARCHAR(40) DEFAULT '',
+plate VARCHAR(10) DEFAULT '',
+time VARCHAR(20) DEFAULT '',
+city VARCHAR(255) DEFAULT '',
+category_position INTEGER(4) NOT NULL,
+speed DECIMAL(4,2) NOT NULL,
+team2 VARCHAR(1024) DEFAULT '',
+PRIMARY KEY (year,stage,plate)
+);
