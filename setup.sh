@@ -1,14 +1,14 @@
 
-http://rdtfiles.s3.amazonaws.com/1468559291BCBR_OVERALL_DAY1.CSV
-http://rdtfiles.s3.amazonaws.com/1468560249BCBR_OVERALL_DAY2.CSV
-http://rdtfiles.s3.amazonaws.com/1468560607BCBR_OVERALL_DAY3.CSV
-http://rdtfiles.s3.amazonaws.com/1468560677BCBR_OVERALL_DAY4.CSV
-http://rdtfiles.s3.amazonaws.com/1468560791BCBR_OVERALL_DAY5.CSV
-http://rdtfiles.s3.amazonaws.com/1468560929BCBR_OVERALL_DAY6.CSV
-http://rdtfiles.s3.amazonaws.com/1468518433BCBR_OVERALL_DAY7.CSV
+curl -o day1.csv http://rdtfiles.s3.amazonaws.com/1468559291BCBR_OVERALL_DAY1.CSV
+curl -o day2.csv http://rdtfiles.s3.amazonaws.com/1468560249BCBR_OVERALL_DAY2.CSV
+curl -o day3.csv http://rdtfiles.s3.amazonaws.com/1468560607BCBR_OVERALL_DAY3.CSV
+curl -o day4.csv http://rdtfiles.s3.amazonaws.com/1468560677BCBR_OVERALL_DAY4.CSV
+curl -o day5.csv http://rdtfiles.s3.amazonaws.com/1468560791BCBR_OVERALL_DAY5.CSV
+curl -o day6.csv http://rdtfiles.s3.amazonaws.com/1468560929BCBR_OVERALL_DAY6.CSV
+curl -o day7.csv http://rdtfiles.s3.amazonaws.com/1468518433BCBR_OVERALL_DAY7.CSV
 
-http://rdtfiles.s3.amazonaws.com/1468273422DOWNTIME_RESULTS.CSV
-http://rdtfiles.s3.amazonaws.com/1468366523GuestRider_Results.csv
+curl -o downtime.csv http://rdtfiles.s3.amazonaws.com/1468273422DOWNTIME_RESULTS.CSV
+curl -o guest.csv http://rdtfiles.s3.amazonaws.com/1468366523GuestRider_Results.csv
 
 
 #
