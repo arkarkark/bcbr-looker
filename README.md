@@ -16,6 +16,7 @@ Then run these commands (you might want to change the password (and in ~/.bcbr.c
 ```sql
 CREATE USER 'bcbr'@'localhost' IDENTIFIED BY 'bcbr';
 GRANT ALL PRIVILEGES ON bcbr.* TO 'bcbr'@'localhost' WITH GRANT OPTION;
+GRANT FILE ON bcbr.* TO 'bcbr'@'localhost' IDENTIFIED BY 'bcbr';
 ```
 
 Once the database is made you can then create the database using bcbr.sql
@@ -27,5 +28,5 @@ mysql --defaults-file=~/.bcbr.config <<< 'SHOW TABLES'
 # load it
 ./bcbrloader.py
 # verify it works
-mysql --defaults-file=~/.bcbr.config -E <<< 'SELECT COUNT(*) AS num_tracks FROM tracks; SELECT COUNT(*) AS num_playlisys FROM playlists;' | fgrep -v '*****'
+mysql --defaults-file=~/.bcbr.config -E <<< 'SELECT COUNT(*) AS racers FROM results;'
 ```
