@@ -48,7 +48,7 @@ view: results {
 
   measure: count {
     type: count
-    drill_fields: [name]
+    drill_fields: [race]
   }
 
 }
