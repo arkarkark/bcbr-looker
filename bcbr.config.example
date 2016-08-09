@@ -1,0 +1,5 @@
+[client]
+host=localhost
+database=bcbr
+user=bcbr
+password=bcbr
