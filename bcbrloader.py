@@ -43,9 +43,11 @@ def LoadDay(cursor, day_number):
   cursor.execute("delete from loader")
   cursor.execute(sql, (file_name,))
   # now move it over
+  race = "BCBR"
   year = 2016
-  cursor.execute("delete from results where year = %s and stage = %s", (year, day_number))
+  cursor.execute("delete from results where race = %s and year = %s and stage = %s", (race, year, day_number))
   sql = """insert into results select
+%s,
 %s,
 %s,
 position,
@@ -63,11 +65,104 @@ speed,
 team2
 from loader
 """
-  cursor.execute(sql, (year, day_number))
+  cursor.execute(sql, (race, year, day_number))
 
+
+def LoadStages(cursor):
+  race = "BCBR"
+  year = 2016
+  cursor.execute("delete from stages where race = %s and year = %s", (race, year))
+  sql = """insert into stages select distinct
+race,
+year,
+stage,
+"",
+count(*),
+0,
+0
+from results
+group by race, year, stage
+"""
+  cursor.execute(sql)
+
+  BCBR_INFO = [
+    {"stage": 1, "length": 28, "climbing": 3803, "name": "Cumbria"},
+    {"stage": 2, "length": 32, "climbing": 3597, "name": "Powell River"},
+    {"stage": 3, "length": 36, "climbing": 5246, "name": "Earls Cove to Sechelt"},
+    {"stage": 4, "length": 32, "climbing": 4949, "name": "Sechelt"},
+    {"stage": 5, "length":  9, "climbing": 2780, "name": "North Vancouver"},
+    {"stage": 6, "length": 33, "climbing": 6378, "name": "Squamish"},
+    {"stage": 7, "length": 16, "climbing": 3511, "name": "Whistler"},
+  ]
+
+  for stage in BCBR_INFO:
+    sql = """update stages set """
+    values = []
+    stage_number = 0
+    sets = []
+    for key, value in stage.items():
+      if key == "stage":
+        stage_number = value
+        continue
+      sets.append("%s = %%s" % key)
+      values.append(value)
+    sql += ", ".join(sets)
+    sql += " where race = %s and year = %s and stage = %s"
+    values.append(race)
+    values.append(year)
+    values.append(stage_number)
+    logging.info("Updating stage: %r", values)
+    cursor.execute(sql, values)
+
+
+def LoadRacers(cursor):
+  race = "BCBR"
+  year = 2016
+  cursor.execute("delete from racers where race = %s and year = %s", (race, year))
+  sql = """insert into racers select distinct
+race,
+year,
+plate_gender,
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+""
+from results
+group by race, year, plate_gender
+"""
+  cursor.execute(sql)
+
+  key_columns = "race, year, plate_gender"
+  value_columns = "name, team, category, gender, country, plate, city, team2"
+  sql = """select """
+  sql += key_columns
+  sql += ", "
+  sql += value_columns
+  sql += """ from results where race = %s and year = %s"""
+  cursor.execute(sql, (race, year))
+
+  rows = cursor.fetchall()
+
+  for row in rows:
+    if not row:
+      break
+    sql = """update racers set """
+    sets = []
+    for key in value_columns.split(", "):
+      sets.append("%s = %%s" % key)
+    sql += ", ".join(sets)
+    sql += " where race = %s and year = %s and plate_gender = %s"
+    values = list(row)
+    for key in key_columns.split(", "):
+      values.append(values.pop(0))
+    cursor.execute(sql, values)
 
 def Main():
-  began = str(datetime.datetime.today())
+  # began = str(datetime.datetime.today())
   logging.basicConfig()
   logging.getLogger().setLevel(logging.DEBUG)
   try:
@@ -82,7 +177,7 @@ def Main():
   config = ConfigParser.ConfigParser()
   config.read(['bcbr.config', os.path.expanduser('~/.bcbr.config')])
 
-  for opt, arg in opts:
+  for opt, _ in opts:
     if opt in ('-h', '--help'):
       Usage(0)
 
@@ -104,6 +199,8 @@ def Main():
   for day_number in range(1, 8):
     logging.info("loading day %d", day_number)
     LoadDay(cursor, day_number)
+  LoadStages(cursor)
+  LoadRacers(cursor)
 
 if __name__ == '__main__':
   Main()
