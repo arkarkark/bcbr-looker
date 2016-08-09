@@ -20,6 +20,16 @@ explore: results {
     relationship: many_to_one
     sql_on: ${racers.race} = ${results.race} and ${racers.year} = ${results.year} and ${racers.plate_gender} = ${results.plate_gender};;
   }
+  join: stages {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${stages.race} = ${results.race} and ${stages.year} = ${results.year};;
+  }
+  join: categories {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${categories.race} = ${results.race} and ${categories.year} = ${results.year};;
+  }
 
 }
 explore: stages {}
