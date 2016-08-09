@@ -113,23 +113,25 @@ primary key (race, year, plate_gender)
 
 drop table if exists categories;
 create table categories (
+race varchar(512) default '',
+year integer(4),
 id varchar(10),
 name varchar(1024) default '',
 primary key (id)
 );
 
 insert into categories values
-(1, "Solo Open Men"),
-(2, "Solo Open Women"),
-(3, "Solo 40+ Men"),
-(4, "Solo 40+ Women"),
-(5, "Solo 50+ Men"),
-(6, "Solo 50+ Women"),
-(7, "Team of 2 Open Men"),
-(8, "Team of 2 Open Women"),
-(9, "Team of 2 Open Mixed"),
-(10, "Team of 2 Veterans 80+"),
-(11, "Team of 2 Veterans 100+"),
-(12, "Solo Men 40+"),
-(15, "UNKNOWN"), ("", "UNKNOWN")
+("BCBR", 2016, 1, "Solo Open Men"),
+("BCBR", 2016, 2, "Solo Open Women"),
+("BCBR", 2016, 3, "Solo 40+ Men"),
+("BCBR", 2016, 4, "Solo 40+ Women"),
+("BCBR", 2016, 5, "Solo 50+ Men"),
+("BCBR", 2016, 6, "Solo 50+ Women"),
+("BCBR", 2016, 7, "Team of 2 Open Men"),
+("BCBR", 2016, 8, "Team of 2 Open Women"),
+("BCBR", 2016, 9, "Team of 2 Open Mixed"),
+("BCBR", 2016, 10, "Team of 2 Veterans 80+"),
+("BCBR", 2016, 11, "Team of 2 Veterans 100+"),
+("BCBR", 2016, 12, "Solo Men 40+"),
+("BCBR", 2016, 15, "UNKNOWN"), ("BCBR", 2016, "", "UNKNOWN")
 ;
