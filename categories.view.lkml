@@ -1,5 +1,4 @@
 view: categories {
-  view_label: ""
   sql_table_name: bcbr.categories ;;
   dimension: id {
     primary_key: yes

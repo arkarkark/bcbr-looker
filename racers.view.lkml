@@ -1,5 +1,13 @@
 view: racers {
   sql_table_name: bcbr.racers ;;
+
+  dimension: id {
+    hidden: yes
+    type: string
+    primary_key: yes
+    sql: CONCAT(${race}, ${year}, ${plate_gender}) ;;
+
+  }
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
