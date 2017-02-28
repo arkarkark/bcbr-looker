@@ -16,11 +16,18 @@ explore: racers {
   }
 
   always_filter: {
-    racers.race: "BCBR"
-    racers.year: "2016"
+    filters: {
+      field: "racers.race"
+      value: "BCBR"
+    }
+    filters: {
+      field: "racers.year"
+      value: "2016"
+    }
   }
 }
 explore: results {
+
   join: racers {
     type: left_outer
     relationship: many_to_one
@@ -34,7 +41,7 @@ explore: results {
   join: categories {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${categories.race} = ${results.race} and ${categories.year} = ${results.year};;
+    sql_on: ${categories.race} = ${results.race} and ${categories.year} = ${results.year} and ${categories.id} = ${results.category};;
   }
 
 }
