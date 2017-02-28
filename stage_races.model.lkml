@@ -44,6 +44,7 @@ explore: results {
     sql_on: ${categories.race} = ${results.race} and ${categories.year} = ${results.year} and ${categories.id} = ${results.category};;
   }
 
+
 }
 explore: stages {}
 explore:  categories {}

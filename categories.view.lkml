@@ -5,6 +5,15 @@ view: categories {
     type: string
     sql: ${TABLE}.id ;;
   }
+  dimension: race {
+    type: string
+    sql: ${TABLE}.race ;;
+  }
+
+  dimension: year {
+    type: number
+    sql: ${TABLE}.year ;;
+  }
 
   dimension: category_name {
     type: string
@@ -15,14 +24,6 @@ view: categories {
     type: count
     drill_fields: [id, category_name]
   }
-    dimension: race {
-      type: string
-      sql: ${TABLE}.race ;;
-    }
 
-    dimension: year {
-      type: number
-      sql: ${TABLE}.year ;;
-    }
 
 }

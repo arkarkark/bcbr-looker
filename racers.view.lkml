@@ -16,6 +16,14 @@ view: racers {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    action: {
+      label: "Edit"
+      url: "https://retina:9317/"
+      form_param: {
+        name: "city"
+        type: string
+      }
+    }
   }
 
   dimension: country {
@@ -67,5 +75,33 @@ view: racers {
     type: count
     drill_fields: [name]
   }
+
+  measure:  category_size  {
+    type:  number
+
+
+    sql:
+       (select COUNT(DISTINCT plate) as size
+
+       from racers as ally
+       WHERE ${category} =  ally.category
+       and ${race} = ally.race
+       and ${year} = ally.year
+      );;
+  }
+
+  measure:  race_size  {
+    type:  number
+
+
+    sql:
+         (select COUNT(DISTINCT plate) as size
+
+         from racers as ally
+         where ${race} = ally.race
+         and ${year} = ally.year
+        );;
+  }
+
 
 }
