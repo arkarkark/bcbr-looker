@@ -30,3 +30,5 @@ mysql --defaults-file=~/.bcbr.config <<< 'SHOW TABLES'
 # verify it works
 mysql --defaults-file=~/.bcbr.config -E <<< 'SELECT COUNT(*) AS racers FROM results;'
 ```
+
+more info here....
