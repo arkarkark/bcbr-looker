@@ -34,6 +34,8 @@ view: results {
     hidden: yes
   }
 
+# comments are teh best
+
   dimension: position {
     type: number
     sql: ${TABLE}.position ;;
