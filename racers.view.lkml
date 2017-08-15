@@ -29,6 +29,23 @@ view: racers {
   dimension: country {
     type: string
     sql: ${TABLE}.country ;;
+    action: {
+      label: "Edit"
+      url: "https://localhost:2006/edit"
+      param: {
+        name: "table"
+        value: "racers"
+      }
+      param: {
+        name: "column"
+        value: "country"
+      }
+      form_param: {
+        name: "New Value"
+        default: "{{ value }}"
+        required: yes
+      }
+    }
   }
 
   dimension: gender {
